@@ -4,6 +4,7 @@ import androidx.compose.runtime.Composable
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import ru.angel.recruitment_agency.MainViewModel
 import ru.angel.recruitment_agency.screens.*
 
 sealed class NavRoute(val route: String) {
@@ -18,17 +19,17 @@ sealed class NavRoute(val route: String) {
 }
 
 @Composable
-fun AgencyNavHost() {
+fun AgencyNavHost(mViewModel: MainViewModel) {
     val navController = rememberNavController()
 
     NavHost(navController = navController, startDestination = NavRoute.Start.route) {
-        composable(NavRoute.Start.route) { StartScreen(navController = navController) }
-        composable(NavRoute.Login.route) { LoginScreen(navController = navController) }
-        composable(NavRoute.Registration.route) { RegistrationScreen(navController = navController) }
-        composable(NavRoute.Main.route) { MainScreen(navController = navController) }
-        composable(NavRoute.Add.route) { AddScreen(navController = navController) }
-        composable(NavRoute.Job.route) { JobScreen(navController = navController) }
-        composable(NavRoute.CV.route) { CVScreen(navController = navController) }
-        composable(NavRoute.Responses.route) { ResponsesScreen(navController = navController) }
+        composable(NavRoute.Start.route) { StartScreen(navController = navController, viewModel = mViewModel) }
+        composable(NavRoute.Login.route) { LoginScreen(navController = navController, viewModel = mViewModel) }
+        composable(NavRoute.Registration.route) { RegistrationScreen(navController = navController, viewModel = mViewModel) }
+        composable(NavRoute.Main.route) { MainScreen(navController = navController, viewModel = mViewModel) }
+        composable(NavRoute.Add.route) { AddScreen(navController = navController, viewModel = mViewModel) }
+        composable(NavRoute.Job.route) { JobScreen(navController = navController, viewModel = mViewModel) }
+        composable(NavRoute.CV.route) { CVScreen(navController = navController, viewModel = mViewModel) }
+        composable(NavRoute.Responses.route) { ResponsesScreen(navController = navController, viewModel = mViewModel) }
     }
 }

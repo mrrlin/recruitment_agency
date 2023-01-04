@@ -22,7 +22,7 @@ import ru.angel.recruitment_agency.utils.TYPE_FIREBASE
 import ru.angel.recruitment_agency.utils.TYPE_ROOM
 
 @Composable
-fun StartScreen(navController: NavHostController) {
+fun StartScreen(navController: NavHostController, viewModel: MainViewModel) {
     val context = LocalContext.current
     val mViewModel: MainViewModel =
         viewModel(factory = MainViewModelFactory(context.applicationContext as Application))
@@ -68,6 +68,9 @@ fun StartScreen(navController: NavHostController) {
 @Composable
 fun prevStartScreen() {
     Recruitment_agencyTheme {
-        StartScreen(navController = rememberNavController())
+        val context = LocalContext.current
+        val mViewModel: MainViewModel =
+            viewModel(factory = MainViewModelFactory(context.applicationContext as Application))
+        StartScreen(navController = rememberNavController(), viewModel = mViewModel)
     }
 }

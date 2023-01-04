@@ -3,7 +3,6 @@ package ru.angel.recruitment_agency.screens
 import android.app.Application
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
@@ -31,11 +30,8 @@ import ru.angel.recruitment_agency.navigation.NavRoute
 import ru.angel.recruitment_agency.ui.theme.Recruitment_agencyTheme
 
 @Composable
-fun MainScreen(navController: NavHostController) {
-    val context = LocalContext.current
-    val mViewModel: MainViewModel =
-        viewModel(factory = MainViewModelFactory(context.applicationContext as Application))
-
+fun MainScreen(navController: NavHostController, viewModel: MainViewModel) {
+    val jobs = viewModel.readAllJobs().observeAsState(listOf()).value
     Scaffold(
         floatingActionButton = {
             FloatingActionButton(
@@ -46,19 +42,11 @@ fun MainScreen(navController: NavHostController) {
             }
         }
     ) {
-//        Column() {
-//            JobItem(title = "First Job", subtitle = "Description", navController = navController)
-//            JobItem(title = "Second Job", subtitle = "Description", navController = navController)
-//            JobItem(title = "Third Job", subtitle = "Description", navController = navController)
-//            JobItem(title = "Fourth Job", subtitle = "Description", navController = navController)
-//            JobItem(title = "Fifth Job", subtitle = "Description", navController = navController)
-//        }
-//        LazyColumn {
-//            items(jobs) { job ->
-//                JobItem(job = job, navController = navController)
-//
-//            }
-//        }
+        LazyColumn {
+            items(jobs) { job ->
+                JobItem(job = job, navController = navController)
+            }
+        }
     }
 }
 
@@ -92,6 +80,9 @@ fun JobItem(job: Job, navController: NavHostController) {
 @Composable
 fun prevMainScreen() {
     Recruitment_agencyTheme {
-        MainScreen(navController = rememberNavController())
+        val context = LocalContext.current
+        val mViewModel: MainViewModel =
+            viewModel(factory = MainViewModelFactory(context.applicationContext as Application))
+        MainScreen(navController = rememberNavController(), viewModel = mViewModel)
     }
 }

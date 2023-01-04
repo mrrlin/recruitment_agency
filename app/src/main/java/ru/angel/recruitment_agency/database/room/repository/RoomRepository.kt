@@ -11,14 +11,17 @@ class RoomRepository(private val jobRoomDao: JobRoomDao) : DatabaseRepository {
 
     override suspend fun create(job: Job, onSuccess: () -> Unit) {
         jobRoomDao.addJob(job = job)
+        onSuccess()
     }
 
     override suspend fun update(job: Job, onSuccess: () -> Unit) {
         jobRoomDao.updateJob(job = job)
+        onSuccess()
     }
 
     override suspend fun delete(job: Job, onSuccess: () -> Unit) {
         jobRoomDao.deleteJob(job = job)
+        onSuccess()
     }
 
 
