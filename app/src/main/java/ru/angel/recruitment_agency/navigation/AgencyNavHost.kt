@@ -22,13 +22,13 @@ fun AgencyNavHost() {
     val navController = rememberNavController()
 
     NavHost(navController = navController, startDestination = NavRoute.Start.route) {
-        composable(NavRoute.Start.route) { Start(navController = navController) }
-        composable(NavRoute.Login.route) { Login(navController = navController) }
-        composable(NavRoute.Registration.route) { Registration(navController = navController) }
-        composable(NavRoute.Main.route) { Main(navController = navController) }
-        composable(NavRoute.Add.route) { Add(navController = navController) }
-        composable(NavRoute.Job.route) { Job(navController = navController) }
-        composable(NavRoute.CV.route) { CV(navController = navController) }
-        composable(NavRoute.Responses.route) { Responses(navController = navController) }
+        composable(NavRoute.Start.route) { StartScreen(navController = navController) }
+        composable(NavRoute.Login.route) { LoginScreen(navController = navController) }
+        composable(NavRoute.Registration.route) { RegistrationScreen(navController = navController) }
+        composable(NavRoute.Main.route) { MainScreen(navController = navController) }
+        composable(NavRoute.Add.route) { AddScreen(navController = navController) }
+        composable(NavRoute.Job.route) { JobScreen(navController = navController) }
+        composable(NavRoute.CV.route) { CVScreen(navController = navController) }
+        composable(NavRoute.Responses.route) { ResponsesScreen(navController = navController) }
     }
 }

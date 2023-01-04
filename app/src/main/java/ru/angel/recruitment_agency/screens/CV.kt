@@ -4,5 +4,5 @@ import androidx.compose.runtime.Composable
 import androidx.navigation.NavHostController
 
 @Composable
-fun CV(navController: NavHostController) {
+fun CVScreen(navController: NavHostController) {
 }

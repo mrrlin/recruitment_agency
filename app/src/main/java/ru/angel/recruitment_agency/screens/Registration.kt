@@ -5,6 +5,6 @@ import androidx.navigation.NavHostController
 import ru.angel.recruitment_agency.navigation.NavRoute
 
 @Composable
-fun Registration(navController: NavHostController) {
+fun RegistrationScreen(navController: NavHostController) {
 
 }

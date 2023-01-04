@@ -4,5 +4,5 @@ import androidx.compose.runtime.Composable
 import androidx.navigation.NavHostController
 
 @Composable
-fun Responses(navController: NavHostController) {
+fun ResponsesScreen(navController: NavHostController) {
 }
