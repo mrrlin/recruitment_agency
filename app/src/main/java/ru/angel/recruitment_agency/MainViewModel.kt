@@ -39,6 +39,26 @@ class MainViewModel (application: Application) : AndroidViewModel(application) {
         }
     }
 
+    fun updateJob(job: Job, onSuccess: () -> Unit) {
+        viewModelScope.launch(Dispatchers.IO) {
+            REPOSITORY.update(job = job) {
+                viewModelScope.launch(Dispatchers.Main) {
+                    onSuccess()
+                }
+            }
+        }
+    }
+
+    fun deleteJob(job: Job, onSuccess: () -> Unit) {
+        viewModelScope.launch(Dispatchers.IO) {
+            REPOSITORY.delete(job = job) {
+                viewModelScope.launch(Dispatchers.Main) {
+                    onSuccess()
+                }
+            }
+        }
+    }
+
     fun readAllJobs() = REPOSITORY.readAll
 }
 

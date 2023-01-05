@@ -6,6 +6,7 @@ import androidx.room.Room
 import androidx.room.RoomDatabase
 import ru.angel.recruitment_agency.database.room.dao.JobRoomDao
 import ru.angel.recruitment_agency.model.Job
+import ru.angel.recruitment_agency.utils.Constants.Keys.JOB_DATABASE
 
 @Database(entities = [Job::class], version = 1)
 abstract class AppRoomDatabase : RoomDatabase(){
@@ -22,7 +23,7 @@ abstract class AppRoomDatabase : RoomDatabase(){
                 INSTANCE = Room.databaseBuilder(
                     context,
                     AppRoomDatabase::class.java,
-                    "jobs_database"
+                    JOB_DATABASE
                 ).build()
                 INSTANCE as AppRoomDatabase
             } else INSTANCE as AppRoomDatabase

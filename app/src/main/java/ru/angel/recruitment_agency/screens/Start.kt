@@ -10,6 +10,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.Constraints
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavHostController
@@ -18,6 +19,10 @@ import ru.angel.recruitment_agency.MainViewModel
 import ru.angel.recruitment_agency.MainViewModelFactory
 import ru.angel.recruitment_agency.navigation.NavRoute
 import ru.angel.recruitment_agency.ui.theme.Recruitment_agencyTheme
+import ru.angel.recruitment_agency.utils.Constants
+import ru.angel.recruitment_agency.utils.Constants.Keys.FIREBASE_DATABASE
+import ru.angel.recruitment_agency.utils.Constants.Keys.ROOM_DATABASE
+import ru.angel.recruitment_agency.utils.Constants.Keys.WHAT_WILL_WE_USE
 import ru.angel.recruitment_agency.utils.TYPE_FIREBASE
 import ru.angel.recruitment_agency.utils.TYPE_ROOM
 
@@ -35,7 +40,7 @@ fun StartScreen(navController: NavHostController, viewModel: MainViewModel) {
             horizontalAlignment = Alignment.CenterHorizontally,
             verticalArrangement = Arrangement.Center
         ) {
-            Text(text = "What will we use?")
+            Text(text = WHAT_WILL_WE_USE)
             Button(
                 onClick = {
                     mViewModel.initDatabase(TYPE_ROOM) {
@@ -46,7 +51,7 @@ fun StartScreen(navController: NavHostController, viewModel: MainViewModel) {
                     .width(200.dp)
                     .padding(vertical = 8.dp)
             ) {
-                Text(text = "Room Database")
+                Text(text = ROOM_DATABASE)
             }
             Button(
                 onClick = {
@@ -58,7 +63,7 @@ fun StartScreen(navController: NavHostController, viewModel: MainViewModel) {
                     .width(200.dp)
                     .padding(vertical = 8.dp)
             ) {
-                Text(text = "Firebase Database")
+                Text(text = FIREBASE_DATABASE)
             }
         }
     }

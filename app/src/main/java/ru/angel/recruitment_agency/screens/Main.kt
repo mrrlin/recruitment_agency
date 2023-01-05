@@ -28,6 +28,7 @@ import ru.angel.recruitment_agency.MainViewModelFactory
 import ru.angel.recruitment_agency.model.Job
 import ru.angel.recruitment_agency.navigation.NavRoute
 import ru.angel.recruitment_agency.ui.theme.Recruitment_agencyTheme
+import ru.angel.recruitment_agency.utils.Constants
 
 @Composable
 fun MainScreen(navController: NavHostController, viewModel: MainViewModel) {
@@ -38,7 +39,7 @@ fun MainScreen(navController: NavHostController, viewModel: MainViewModel) {
                 onClick = {
                     navController.navigate(route = NavRoute.Add.route)
                 }) {
-                Icon(imageVector = Icons.Filled.Add, contentDescription = "Add Icons", tint = Color.White)
+                Icon(imageVector = Icons.Filled.Add, contentDescription = Constants.Keys.ADD_ICONS, tint = Color.White)
             }
         }
     ) {
@@ -57,7 +58,7 @@ fun JobItem(job: Job, navController: NavHostController) {
             .fillMaxWidth()
             .padding(vertical = 8.dp, horizontal = 24.dp)
             .clickable {
-                navController.navigate(route = NavRoute.Job.route)
+                navController.navigate(NavRoute.Job.route + "/${job.id}")
             },
         elevation = 6.dp
     ) {

@@ -6,16 +6,17 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import ru.angel.recruitment_agency.MainViewModel
 import ru.angel.recruitment_agency.screens.*
+import ru.angel.recruitment_agency.utils.Constants
 
 sealed class NavRoute(val route: String) {
-    object Start: NavRoute("start_screen") //Choose registration/log in
-    object Login: NavRoute("login_screen") //Log in
-    object Registration: NavRoute("registration_screen") //Registration
-    object Main: NavRoute("main_screen") //List of jobs
-    object Add: NavRoute("add_screen") //Add job
-    object Job: NavRoute("job_screen") //Job
-    object CV: NavRoute("cv_screen") //CV
-    object Responses: NavRoute("responses_screen") //Responses
+    object Start: NavRoute(Constants.Screens.START_SCREEN) //Choose registration/log in
+    object Login: NavRoute(Constants.Screens.LOGIN_SCREEN) //Log in
+    object Registration: NavRoute(Constants.Screens.REGISTRATION_SCREEN) //Registration
+    object Main: NavRoute(Constants.Screens.MAIN_SCREEN) //List of jobs
+    object Add: NavRoute(Constants.Screens.ADD_SCREEN) //Add job
+    object Job: NavRoute(Constants.Screens.JOB_SCREEN) //Job
+    object CV: NavRoute(Constants.Screens.CV_SCREEN) //CV
+    object Responses: NavRoute(Constants.Screens.RESPONSES_SCREEN) //Responses
 }
 
 @Composable
@@ -28,7 +29,9 @@ fun AgencyNavHost(mViewModel: MainViewModel) {
         composable(NavRoute.Registration.route) { RegistrationScreen(navController = navController, viewModel = mViewModel) }
         composable(NavRoute.Main.route) { MainScreen(navController = navController, viewModel = mViewModel) }
         composable(NavRoute.Add.route) { AddScreen(navController = navController, viewModel = mViewModel) }
-        composable(NavRoute.Job.route) { JobScreen(navController = navController, viewModel = mViewModel) }
+        composable(NavRoute.Job.route + "/{${Constants.Keys.ID}}") { backStackEntry ->
+            JobScreen(navController = navController, viewModel = mViewModel, jobId = backStackEntry.arguments?.getString(Constants.Keys.ID))
+        }
         composable(NavRoute.CV.route) { CVScreen(navController = navController, viewModel = mViewModel) }
         composable(NavRoute.Responses.route) { ResponsesScreen(navController = navController, viewModel = mViewModel) }
     }

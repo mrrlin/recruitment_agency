@@ -25,6 +25,7 @@ import ru.angel.recruitment_agency.MainViewModelFactory
 import ru.angel.recruitment_agency.model.Job
 import ru.angel.recruitment_agency.navigation.NavRoute
 import ru.angel.recruitment_agency.ui.theme.Recruitment_agencyTheme
+import ru.angel.recruitment_agency.utils.Constants
 
 @Composable
 fun AddScreen(navController: NavHostController, viewModel: MainViewModel) {
@@ -38,7 +39,7 @@ fun AddScreen(navController: NavHostController, viewModel: MainViewModel) {
             verticalArrangement = Arrangement.Center
         ) {
             Text(
-                text = "Add new job",
+                text = Constants.Keys.ADD_NEW_JOB,
                 fontSize = 18.sp,
                 fontWeight = FontWeight.Bold,
                 modifier = Modifier.padding(8.dp)
@@ -49,7 +50,7 @@ fun AddScreen(navController: NavHostController, viewModel: MainViewModel) {
                     title = it
                     isButtonEnabled = title.isNotEmpty() && description.isNotEmpty()
                     },
-                label = { Text(text = "Job title") },
+                label = { Text(text = Constants.Keys.JOB_TITLE) },
                 isError = title.isEmpty()
             )
             OutlinedTextField(
@@ -58,7 +59,7 @@ fun AddScreen(navController: NavHostController, viewModel: MainViewModel) {
                     description = it
                     isButtonEnabled = title.isNotEmpty() && description.isNotEmpty()
                 },
-                label = { Text(text = "Job description") },
+                label = { Text(text = Constants.Keys.JOB_DESCRIPTION) },
                 isError = description.isEmpty()
             )
             Button(
@@ -70,7 +71,7 @@ fun AddScreen(navController: NavHostController, viewModel: MainViewModel) {
                     }
                 }
             ) {
-                Text(text = "Add Job")
+                Text(text = Constants.Keys.ADD_JOB)
             }
         }
     }
