@@ -5,6 +5,8 @@ import ru.angel.recruitment_agency.database.DatabaseRepository
 const val TYPE_DATABASE = "type_database"
 const val TYPE_ROOM = "type_room"
 const val TYPE_FIREBASE = "type_firebase"
+const val FIREBASE_ID = "firebase_id"
+
 
 lateinit var REPOSITORY: DatabaseRepository
 lateinit var LOGIN: String
@@ -36,6 +38,9 @@ object Constants {
         const val LOG_IN = "Log In"
         const val LOGIN_TEXT = "Login"
         const val PASSWORD_TEXT = "Password"
+
+        const val TITLE_TEXT = "title"
+        const val DESCRIPTION_TEXT = "description"
     }
 
     object Screens {
