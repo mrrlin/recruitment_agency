@@ -12,4 +12,8 @@ interface DatabaseRepository {
     suspend fun update(job: Job, onSuccess: ()-> Unit)
 
     suspend fun delete(job: Job, onSuccess: ()-> Unit)
+
+    fun signOut() {}
+
+    fun connectToDatabase(onSuccess: () -> Unit, onFail: (String) -> Unit) {}
 }

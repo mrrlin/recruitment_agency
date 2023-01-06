@@ -6,6 +6,7 @@ import androidx.lifecycle.*
 import androidx.lifecycle.viewmodel.compose.viewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import ru.angel.recruitment_agency.database.firebase.AppFirebaseRepository
 import ru.angel.recruitment_agency.database.room.AppRoomDatabase
 import ru.angel.recruitment_agency.database.room.repository.RoomRepository
 import ru.angel.recruitment_agency.model.Job
@@ -25,6 +26,13 @@ class MainViewModel (application: Application) : AndroidViewModel(application) {
                 val dao = AppRoomDatabase.getInstance(context = context).getRoomDao()
                 REPOSITORY = RoomRepository(dao)
                 onSuccess()
+            }
+            TYPE_FIREBASE -> {
+                REPOSITORY = AppFirebaseRepository()
+                REPOSITORY.connectToDatabase(
+                    { onSuccess() },
+                    { Log.d("checkData", "Error: ${it}")}
+                )
             }
         }
     }
