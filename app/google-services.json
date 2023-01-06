@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "950483715772",
+    "project_id": "work-agency-d059b",
+    "storage_bucket": "work-agency-d059b.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:950483715772:android:23e16a6e93db879bb032b9",
+        "android_client_info": {
+          "package_name": "ru.angel.recruitment_agency"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "950483715772-38c424ccaq2bkhgd18eg4pmk4e60tcri.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAKiJ9bUhwOW5sYGFrPBHqHTtNyO7Ji-zI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "950483715772-38c424ccaq2bkhgd18eg4pmk4e60tcri.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
