@@ -24,5 +24,5 @@ class RoomRepository(private val jobRoomDao: JobRoomDao) : DatabaseRepository {
         onSuccess()
     }
 
-
+    override fun signOut() {}
 }

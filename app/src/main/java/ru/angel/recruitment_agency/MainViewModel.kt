@@ -10,10 +10,7 @@ import ru.angel.recruitment_agency.database.firebase.AppFirebaseRepository
 import ru.angel.recruitment_agency.database.room.AppRoomDatabase
 import ru.angel.recruitment_agency.database.room.repository.RoomRepository
 import ru.angel.recruitment_agency.model.Job
-import ru.angel.recruitment_agency.utils.REPOSITORY
-import ru.angel.recruitment_agency.utils.TYPE_DATABASE
-import ru.angel.recruitment_agency.utils.TYPE_FIREBASE
-import ru.angel.recruitment_agency.utils.TYPE_ROOM
+import ru.angel.recruitment_agency.utils.*
 
 class MainViewModel (application: Application) : AndroidViewModel(application) {
 
@@ -68,6 +65,18 @@ class MainViewModel (application: Application) : AndroidViewModel(application) {
     }
 
     fun readAllJobs() = REPOSITORY.readAll
+
+    fun singOut(onSuccess: () -> Unit) {
+        when(DB_TYPE.value) {
+            TYPE_FIREBASE,
+            TYPE_ROOM -> {
+                REPOSITORY.signOut()
+                DB_TYPE.value = Constants.Keys.EMPTY
+                onSuccess()
+            }
+            else -> { Log.d("checkData", "signOut: Else: ${DB_TYPE.value}") }
+        }
+    }
 }
 
 class MainViewModelFactory(private val application: Application) : ViewModelProvider.Factory {

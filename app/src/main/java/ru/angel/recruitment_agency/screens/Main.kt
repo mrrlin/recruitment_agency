@@ -56,7 +56,7 @@ fun MainScreen(navController: NavHostController, viewModel: MainViewModel) {
 
 @Composable
 fun JobItem(job: Job, navController: NavHostController) {
-    val jobId = when(DB_TYPE) {
+    val jobId = when(DB_TYPE.value) {
         TYPE_FIREBASE -> job.firebaseId
         TYPE_ROOM -> job.id
         else -> Constants.Keys.EMPTY

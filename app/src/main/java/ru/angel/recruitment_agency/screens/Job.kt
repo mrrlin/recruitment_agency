@@ -31,7 +31,7 @@ import ru.angel.recruitment_agency.utils.TYPE_ROOM
 @Composable
 fun JobScreen(navController: NavHostController, viewModel: MainViewModel, jobId: String?) {
     val jobs = viewModel.readAllJobs().observeAsState(listOf()).value
-    val job = when(DB_TYPE) {
+    val job = when(DB_TYPE.value) {
         TYPE_ROOM -> {
             jobs.firstOrNull { it.id == jobId?.toInt() } ?: Job()
         }
