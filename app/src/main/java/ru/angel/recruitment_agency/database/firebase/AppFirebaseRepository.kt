@@ -16,6 +16,7 @@ class AppFirebaseRepository : DatabaseRepository {
     private val mAuth = FirebaseAuth.getInstance()
     private val database = FirebaseDatabase.getInstance().reference
         .child(mAuth.currentUser?.uid.toString())
+
     override val readAll: LiveData<List<Job>> = AllJobsLiveData()
 
     override suspend fun create(job: Job, onSuccess: () -> Unit) {
@@ -23,8 +24,8 @@ class AppFirebaseRepository : DatabaseRepository {
         val mapJobs = hashMapOf<String, Any>()
 
         mapJobs[FIREBASE_ID] = jobId
-        mapJobs[Constants.Keys.TITLE_TEXT] = job.title
-        mapJobs[Constants.Keys.DESCRIPTION_TEXT] = job.description
+        mapJobs[Constants.Keys.TITLE] = job.title
+        mapJobs[Constants.Keys.DESCRIPTION] = job.description
 
         database.child(jobId)
             .updateChildren(mapJobs)
@@ -33,11 +34,23 @@ class AppFirebaseRepository : DatabaseRepository {
     }
 
     override suspend fun update(job: Job, onSuccess: () -> Unit) {
-        TODO("Not yet implemented")
+        val jobId = job.firebaseId
+        val mapJobs = hashMapOf<String, Any>()
+
+        mapJobs[FIREBASE_ID] = jobId
+        mapJobs[Constants.Keys.TITLE] = job.title
+        mapJobs[Constants.Keys.DESCRIPTION] = job.description
+
+        database.child(jobId)
+            .updateChildren(mapJobs)
+            .addOnSuccessListener { onSuccess() }
+            .addOnFailureListener { Log.d("checkData", "Failed to update job") }
     }
 
     override suspend fun delete(job: Job, onSuccess: () -> Unit) {
-        TODO("Not yet implemented")
+        database.child(job.firebaseId).removeValue()
+            .addOnSuccessListener { onSuccess() }
+            .addOnFailureListener { Log.d("checkData", "Failed to delete job") }
     }
 
     override fun signOut() {

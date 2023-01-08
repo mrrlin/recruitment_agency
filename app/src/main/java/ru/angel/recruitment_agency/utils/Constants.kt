@@ -5,12 +5,13 @@ import ru.angel.recruitment_agency.database.DatabaseRepository
 const val TYPE_DATABASE = "type_database"
 const val TYPE_ROOM = "type_room"
 const val TYPE_FIREBASE = "type_firebase"
-const val FIREBASE_ID = "firebase_id"
+const val FIREBASE_ID = "firebaseId"
 
 
 lateinit var REPOSITORY: DatabaseRepository
 lateinit var LOGIN: String
 lateinit var PASSWORD: String
+lateinit var DB_TYPE: String
 
 object Constants {
     object Keys {
@@ -21,8 +22,8 @@ object Constants {
         const val JOB_DESCRIPTION = "Job description"
         const val ADD_JOB = "Add Job" //Button's text
         const val ADD_ICONS = "Add Icons" //Button's description
-        const val TITLE = "Title"
-        const val DESCRIPTION = "Description"
+        const val TITLE = "title"
+        const val DESCRIPTION = "description"
         const val WHAT_WILL_WE_USE = "What will we use?"
         const val ROOM_DATABASE = "Room Database"
         const val FIREBASE_DATABASE = "Firebase Database"
@@ -39,8 +40,8 @@ object Constants {
         const val LOGIN_TEXT = "Login"
         const val PASSWORD_TEXT = "Password"
 
-        const val TITLE_TEXT = "title"
-        const val DESCRIPTION_TEXT = "description"
+//        const val TITLE_TEXT = "title"
+//        const val DESCRIPTION_TEXT = "description"
     }
 
     object Screens {

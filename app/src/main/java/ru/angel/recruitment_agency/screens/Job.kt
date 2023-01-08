@@ -23,12 +23,23 @@ import ru.angel.recruitment_agency.model.Job
 import ru.angel.recruitment_agency.navigation.NavRoute
 import ru.angel.recruitment_agency.ui.theme.Recruitment_agencyTheme
 import ru.angel.recruitment_agency.utils.Constants
+import ru.angel.recruitment_agency.utils.DB_TYPE
+import ru.angel.recruitment_agency.utils.TYPE_FIREBASE
+import ru.angel.recruitment_agency.utils.TYPE_ROOM
 
 @OptIn(ExperimentalMaterialApi::class)
 @Composable
 fun JobScreen(navController: NavHostController, viewModel: MainViewModel, jobId: String?) {
     val jobs = viewModel.readAllJobs().observeAsState(listOf()).value
-    val job = jobs.firstOrNull{ it.id == jobId?.toInt() } ?: Job(title = Constants.Keys.NONE, description = Constants.Keys.NONE)
+    val job = when(DB_TYPE) {
+        TYPE_ROOM -> {
+            jobs.firstOrNull { it.id == jobId?.toInt() } ?: Job()
+        }
+        TYPE_FIREBASE -> {
+            jobs.firstOrNull { it.firebaseId == jobId } ?: Job()
+        }
+        else -> Job()
+    }
     val bottomSheetState = rememberModalBottomSheetState(initialValue = ModalBottomSheetValue.Hidden)
     val coroutineScope = rememberCoroutineScope()
     var title by remember { mutableStateOf(Constants.Keys.EMPTY)}
@@ -68,7 +79,7 @@ fun JobScreen(navController: NavHostController, viewModel: MainViewModel, jobId:
                         onClick = {
                             viewModel.updateJob(
                                 job =
-                                Job(id = job.id, title = title, description = description)
+                                Job(id = job.id, title = title, description = description, firebaseId = job.firebaseId)
                             ) {
                                 navController.navigate(NavRoute.Main.route)
                             }

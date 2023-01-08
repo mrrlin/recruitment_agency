@@ -29,6 +29,9 @@ import ru.angel.recruitment_agency.model.Job
 import ru.angel.recruitment_agency.navigation.NavRoute
 import ru.angel.recruitment_agency.ui.theme.Recruitment_agencyTheme
 import ru.angel.recruitment_agency.utils.Constants
+import ru.angel.recruitment_agency.utils.DB_TYPE
+import ru.angel.recruitment_agency.utils.TYPE_FIREBASE
+import ru.angel.recruitment_agency.utils.TYPE_ROOM
 
 @Composable
 fun MainScreen(navController: NavHostController, viewModel: MainViewModel) {
@@ -53,12 +56,17 @@ fun MainScreen(navController: NavHostController, viewModel: MainViewModel) {
 
 @Composable
 fun JobItem(job: Job, navController: NavHostController) {
+    val jobId = when(DB_TYPE) {
+        TYPE_FIREBASE -> job.firebaseId
+        TYPE_ROOM -> job.id
+        else -> Constants.Keys.EMPTY
+    }
     Card(
         modifier = Modifier
             .fillMaxWidth()
             .padding(vertical = 8.dp, horizontal = 24.dp)
             .clickable {
-                navController.navigate(NavRoute.Job.route + "/${job.id}")
+                navController.navigate(NavRoute.Job.route + "/${jobId}")
             },
         elevation = 6.dp
     ) {
