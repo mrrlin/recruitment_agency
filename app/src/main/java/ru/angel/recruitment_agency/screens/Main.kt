@@ -2,9 +2,7 @@ package ru.angel.recruitment_agency.screens
 
 import android.app.Application
 import androidx.compose.foundation.clickable
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material.*
@@ -38,7 +36,7 @@ fun MainScreen(navController: NavHostController, viewModel: MainViewModel) {
     val jobs = viewModel.readAllJobs().observeAsState(listOf()).value
     Scaffold(
         floatingActionButton = {
-            FloatingActionButton(
+            FloatingActionButton( //Button for adding a new job
                 onClick = {
                     navController.navigate(route = NavRoute.Add.route)
                 }) {
@@ -71,16 +69,37 @@ fun JobItem(job: Job, navController: NavHostController) {
         elevation = 6.dp
     ) {
         Column(
-            modifier = Modifier.padding(vertical = 8.dp),
-            horizontalAlignment = Alignment.CenterHorizontally
+            modifier = Modifier.padding(vertical = 8.dp, horizontal = 15.dp),
+            horizontalAlignment = Alignment.Start
         ) {
-
             Text(
-                text = job.title,
+                text = job.title, //Job Title
                 fontSize = 24.sp,
                 fontWeight = FontWeight.Bold
             )
+            Text(text = "Salary")
+            Text(text = "City")
+            Text(text = "Company")
             Text(text = job.description)
+            Row(
+                modifier = Modifier
+                    .padding(vertical = 10.dp)
+                    .fillMaxWidth(),
+                    horizontalArrangement = Arrangement.SpaceEvenly
+            ) {
+                Button(
+                    onClick = { 
+                    /*TODO*/ 
+                    }) {
+                    Text(text = "Contacts")
+                }
+                Button(
+                    onClick = {
+                    /*TODO*/ 
+                    }) {
+                    Text(text = "Respond")
+                }
+            }
         }
     }
 }

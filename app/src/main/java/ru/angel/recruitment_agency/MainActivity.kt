@@ -42,7 +42,7 @@ class MainActivity : ComponentActivity() {
                                          .padding(horizontal = 16.dp),
                                      horizontalArrangement = Arrangement.SpaceBetween
                                  ) {
-                                     Text(text = "Dream Job")
+                                     Text(text = "Dream Job") //App Title
                                      if (DB_TYPE.value.isNotEmpty()) {
                                          Icon(
                                              imageVector = Icons.Default.ExitToApp,

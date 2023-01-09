@@ -2,7 +2,9 @@ package ru.angel.recruitment_agency.screens
 
 import android.app.Application
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.*
 import androidx.compose.runtime.*
 import androidx.compose.runtime.livedata.observeAsState
@@ -53,8 +55,9 @@ fun JobScreen(navController: NavHostController, viewModel: MainViewModel, jobId:
             Surface {
                 Column(
                     modifier = Modifier
+                        .verticalScroll(rememberScrollState())
                         .fillMaxSize()
-                        .padding(all = 32.dp)
+                        .padding(all = 32.dp),
                 ) {
                     Text(
                         text = Constants.Keys.EDIT_JOB,
@@ -62,17 +65,57 @@ fun JobScreen(navController: NavHostController, viewModel: MainViewModel, jobId:
                         fontWeight = FontWeight.Bold,
                         modifier = Modifier.padding(vertical = 8.dp)
                     )
-                    OutlinedTextField(
+                    OutlinedTextField( //Job Title
                         value = title,
                         onValueChange = { title = it },
                         label = { Text(text = Constants.Keys.TITLE) },
                         isError = title.isEmpty()
                     )
                     OutlinedTextField(
+                        value = "Required work experience: 3 years",
+                        onValueChange = {},
+                        label = { Text(text = "Work experience")}
+                    )
+                    OutlinedTextField(
+                        value = "Salary: 30000",
+                        onValueChange = {},
+                        label = { Text(text = "Salary")}
+                    )
+                    OutlinedTextField(
+                        value = "City: Vladimir",
+                        onValueChange = {},
+                        label = { Text(text = "City")}
+                    )
+                    OutlinedTextField(
+                        value = "Company: The best company",
+                        onValueChange = {},
+                        label = { Text(text = "Company")}
+                    )
+                    OutlinedTextField( //Job Description
                         value = description,
                         onValueChange = { description = it },
                         label = { Text(text = Constants.Keys.DESCRIPTION) },
                         isError = description.isEmpty()
+                    )
+                    OutlinedTextField(
+                        value = "Requirements: Some requirements",
+                        onValueChange = {},
+                        label = { Text(text = "Requirements")}
+                    )
+                    OutlinedTextField(
+                        value = "Conditions: Some conditions",
+                        onValueChange = {},
+                        label = { Text(text = "Conditions")}
+                    )
+                    OutlinedTextField(
+                        value = "Skills: Some skills",
+                        onValueChange = {},
+                        label = { Text(text = "Skills")}
+                    )
+                    OutlinedTextField(
+                        value = "Contacts: Some contacts",
+                        onValueChange = {},
+                        label = { Text(text = "Contacts")}
                     )
                     Button(
                         modifier = Modifier.padding(top = 16.dp),
@@ -105,14 +148,62 @@ fun JobScreen(navController: NavHostController, viewModel: MainViewModel, jobId:
                         .padding(32.dp)
                 ) {
                     Column(
-                        modifier = Modifier.padding(vertical = 8.dp),
-                        horizontalAlignment = Alignment.CenterHorizontally
+                        modifier = Modifier.padding(vertical = 8.dp, horizontal = 8.dp),
+                        horizontalAlignment = Alignment.Start
                     ) {
                         Text(
                             text = job.title,
                             fontSize = 24.sp,
                             fontWeight = FontWeight.Bold,
                             modifier = Modifier.padding(top = 32.dp)
+                        )
+                        Text(
+                            text = "Required work experience: 3 years",
+                            fontSize = 18.sp,
+                            fontWeight = FontWeight.Light,
+                            modifier = Modifier.padding(top = 16.dp)
+                        )
+                        Text(
+                            text = "Salary: 30000",
+                            fontSize = 18.sp,
+                            fontWeight = FontWeight.Light,
+                            modifier = Modifier.padding(top = 16.dp)
+                        )
+                        Text(
+                            text = "City: Vladimir",
+                            fontSize = 18.sp,
+                            fontWeight = FontWeight.Light,
+                            modifier = Modifier.padding(top = 16.dp)
+                        )
+                        Text(
+                            text = "Company: The best company",
+                            fontSize = 18.sp,
+                            fontWeight = FontWeight.Light,
+                            modifier = Modifier.padding(top = 16.dp)
+                        )
+                        Text(
+                            text = "Requirements: Some requirements",
+                            fontSize = 18.sp,
+                            fontWeight = FontWeight.Light,
+                            modifier = Modifier.padding(top = 16.dp)
+                        )
+                        Text(
+                            text = "Conditions: Some conditions",
+                            fontSize = 18.sp,
+                            fontWeight = FontWeight.Light,
+                            modifier = Modifier.padding(top = 16.dp)
+                        )
+                        Text(
+                            text = "Skills: Some skills",
+                            fontSize = 18.sp,
+                            fontWeight = FontWeight.Light,
+                            modifier = Modifier.padding(top = 16.dp)
+                        )
+                        Text(
+                            text = "Contacts: Some contacts",
+                            fontSize = 18.sp,
+                            fontWeight = FontWeight.Light,
+                            modifier = Modifier.padding(top = 16.dp)
                         )
                         Text(
                             text = job.description,

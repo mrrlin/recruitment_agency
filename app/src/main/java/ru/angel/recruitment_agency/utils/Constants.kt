@@ -47,6 +47,7 @@ object Constants {
 
     object Screens {
         const val START_SCREEN = "start_screen"
+        const val JOB_EDIT_SCREEN = "job_edit_screen"
         const val LOGIN_SCREEN = "login_screen"
         const val REGISTRATION_SCREEN = "registration_screen"
         const val MAIN_SCREEN = "main_screen"
