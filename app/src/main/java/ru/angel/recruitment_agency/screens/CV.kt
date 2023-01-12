@@ -353,6 +353,13 @@ fun CVScreen(navController: NavHostController, viewModel: MainViewModel, cvId: S
                     }) {
                         Text(text = Constants.Keys.UPDATE)
                     }
+                    Button(onClick = {
+                        viewModel.deleteCV(cv = cv) {
+                            navController.navigate(NavRoute.CVS.route)
+                        }
+                    }) {
+                        Text(text = Constants.Keys.DELETE)
+                    }
                 }
                 Button(
                     modifier = Modifier
