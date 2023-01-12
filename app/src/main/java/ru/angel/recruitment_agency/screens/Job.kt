@@ -45,7 +45,15 @@ fun JobScreen(navController: NavHostController, viewModel: MainViewModel, jobId:
     val bottomSheetState = rememberModalBottomSheetState(initialValue = ModalBottomSheetValue.Hidden)
     val coroutineScope = rememberCoroutineScope()
     var title by remember { mutableStateOf(Constants.Keys.EMPTY)}
+    var work_experience by remember { mutableStateOf(Constants.Keys.EMPTY)}
+    var salary by remember { mutableStateOf(Constants.Keys.EMPTY) }
+    var city by remember { mutableStateOf(Constants.Keys.EMPTY) }
+    var company by remember { mutableStateOf(Constants.Keys.EMPTY) }
     var description by remember { mutableStateOf(Constants.Keys.EMPTY)}
+    var requirements by remember { mutableStateOf(Constants.Keys.EMPTY) }
+    var conditions by remember { mutableStateOf(Constants.Keys.EMPTY) }
+    var skills by remember { mutableStateOf(Constants.Keys.EMPTY) }
+    var contacts by remember { mutableStateOf(Constants.Keys.EMPTY) }
 
     ModalBottomSheetLayout(
         sheetState = bottomSheetState,
@@ -71,25 +79,29 @@ fun JobScreen(navController: NavHostController, viewModel: MainViewModel, jobId:
                         label = { Text(text = Constants.Keys.TITLE) },
                         isError = title.isEmpty()
                     )
-                    OutlinedTextField(
-                        value = "Required work experience: 3 years",
-                        onValueChange = {},
-                        label = { Text(text = "Work experience")}
+                    OutlinedTextField( //Work experience
+                        value = work_experience,
+                        onValueChange = { work_experience = it },
+                        label = { Text(text = Constants.Keys.WORK_EXPERIENCE) },
+                        isError = work_experience.isEmpty()
                     )
                     OutlinedTextField(
-                        value = "Salary: 30000",
-                        onValueChange = {},
-                        label = { Text(text = "Salary")}
+                        value = salary,
+                        onValueChange = { salary = it },
+                        label = { Text(text = Constants.Keys.SALARY)},
+                        isError = salary.isEmpty()
                     )
                     OutlinedTextField(
-                        value = "City: Vladimir",
-                        onValueChange = {},
-                        label = { Text(text = "City")}
+                        value = city,
+                        onValueChange = { city = it },
+                        label = { Text(text = Constants.Keys.CITY)},
+                        isError = city.isEmpty()
                     )
                     OutlinedTextField(
-                        value = "Company: The best company",
-                        onValueChange = {},
-                        label = { Text(text = "Company")}
+                        value = company,
+                        onValueChange = { company = it },
+                        label = { Text(text = Constants.Keys.COMPANY)},
+                        isError = company.isEmpty()
                     )
                     OutlinedTextField( //Job Description
                         value = description,
@@ -98,31 +110,48 @@ fun JobScreen(navController: NavHostController, viewModel: MainViewModel, jobId:
                         isError = description.isEmpty()
                     )
                     OutlinedTextField(
-                        value = "Requirements: Some requirements",
-                        onValueChange = {},
-                        label = { Text(text = "Requirements")}
+                        value = requirements,
+                        onValueChange = { requirements = it },
+                        label = { Text(text = Constants.Keys.REQUIREMENTS)},
+                        isError = requirements.isEmpty()
                     )
                     OutlinedTextField(
-                        value = "Conditions: Some conditions",
-                        onValueChange = {},
-                        label = { Text(text = "Conditions")}
+                        value = conditions,
+                        onValueChange = { conditions = it },
+                        label = { Text(text = Constants.Keys.CONDITIONS)},
+                        isError = conditions.isEmpty()
                     )
                     OutlinedTextField(
-                        value = "Skills: Some skills",
-                        onValueChange = {},
-                        label = { Text(text = "Skills")}
+                        value = skills,
+                        onValueChange = { skills = it },
+                        label = { Text(text = Constants.Keys.SKILLS)},
+                        isError = skills.isEmpty()
                     )
                     OutlinedTextField(
-                        value = "Contacts: Some contacts",
-                        onValueChange = {},
-                        label = { Text(text = "Contacts")}
+                        value = contacts,
+                        onValueChange = { contacts = it },
+                        label = { Text(text = Constants.Keys.CONTACTS)},
+                        isError = contacts.isEmpty()
                     )
                     Button(
-                        modifier = Modifier.padding(top = 16.dp),
+                        modifier = Modifier.padding(top = 16.dp, bottom = 30.dp),
                         onClick = {
                             viewModel.updateJob(
                                 job =
-                                Job(id = job.id, title = title, description = description, firebaseId = job.firebaseId)
+                                Job(
+                                    id = job.id,
+                                    firebaseId = job.firebaseId,
+                                    title = title,
+                                    work_experience = work_experience,
+                                    salary = salary,
+                                    city = city,
+                                    company = company,
+                                    description = description,
+                                    requirements = requirements,
+                                    conditions = conditions,
+                                    skills = skills,
+                                    contacts = contacts
+                                )
                             ) {
                                 navController.navigate(NavRoute.Main.route)
                             }
@@ -135,7 +164,7 @@ fun JobScreen(navController: NavHostController, viewModel: MainViewModel, jobId:
         }
     ) {
         Scaffold(
-            modifier = Modifier.fillMaxSize()
+            modifier = Modifier.padding(bottom = 60.dp).fillMaxSize()
         ) {
             Column(
                 modifier = Modifier.fillMaxSize(),
@@ -148,59 +177,35 @@ fun JobScreen(navController: NavHostController, viewModel: MainViewModel, jobId:
                         .padding(32.dp)
                 ) {
                     Column(
-                        modifier = Modifier.padding(vertical = 8.dp, horizontal = 8.dp),
+                        modifier = Modifier.padding(vertical = 8.dp, horizontal = 10.dp),
                         horizontalAlignment = Alignment.Start
                     ) {
                         Text(
                             text = job.title,
                             fontSize = 24.sp,
                             fontWeight = FontWeight.Bold,
-                            modifier = Modifier.padding(top = 32.dp)
+                            modifier = Modifier.padding(top = 10.dp)
                         )
                         Text(
-                            text = "Required work experience: 3 years",
+                            text = job.work_experience,
                             fontSize = 18.sp,
                             fontWeight = FontWeight.Light,
                             modifier = Modifier.padding(top = 16.dp)
                         )
                         Text(
-                            text = "Salary: 30000",
+                            text = job.salary,
                             fontSize = 18.sp,
                             fontWeight = FontWeight.Light,
                             modifier = Modifier.padding(top = 16.dp)
                         )
                         Text(
-                            text = "City: Vladimir",
+                            text = job.city,
                             fontSize = 18.sp,
                             fontWeight = FontWeight.Light,
                             modifier = Modifier.padding(top = 16.dp)
                         )
                         Text(
-                            text = "Company: The best company",
-                            fontSize = 18.sp,
-                            fontWeight = FontWeight.Light,
-                            modifier = Modifier.padding(top = 16.dp)
-                        )
-                        Text(
-                            text = "Requirements: Some requirements",
-                            fontSize = 18.sp,
-                            fontWeight = FontWeight.Light,
-                            modifier = Modifier.padding(top = 16.dp)
-                        )
-                        Text(
-                            text = "Conditions: Some conditions",
-                            fontSize = 18.sp,
-                            fontWeight = FontWeight.Light,
-                            modifier = Modifier.padding(top = 16.dp)
-                        )
-                        Text(
-                            text = "Skills: Some skills",
-                            fontSize = 18.sp,
-                            fontWeight = FontWeight.Light,
-                            modifier = Modifier.padding(top = 16.dp)
-                        )
-                        Text(
-                            text = "Contacts: Some contacts",
+                            text = job.company,
                             fontSize = 18.sp,
                             fontWeight = FontWeight.Light,
                             modifier = Modifier.padding(top = 16.dp)
@@ -210,6 +215,30 @@ fun JobScreen(navController: NavHostController, viewModel: MainViewModel, jobId:
                             fontSize = 18.sp,
                             fontWeight = FontWeight.Light,
                             modifier = Modifier.padding(top = 16.dp)
+                        )
+                        Text(
+                            text = job.requirements,
+                            fontSize = 18.sp,
+                            fontWeight = FontWeight.Light,
+                            modifier = Modifier.padding(top = 16.dp)
+                        )
+                        Text(
+                            text = job.conditions,
+                            fontSize = 18.sp,
+                            fontWeight = FontWeight.Light,
+                            modifier = Modifier.padding(top = 16.dp)
+                        )
+                        Text(
+                            text = job.skills,
+                            fontSize = 18.sp,
+                            fontWeight = FontWeight.Light,
+                            modifier = Modifier.padding(top = 16.dp)
+                        )
+                        Text(
+                            text = job.contacts,
+                            fontSize = 18.sp,
+                            fontWeight = FontWeight.Light,
+                            modifier = Modifier.padding(top = 16.dp, bottom = 15.dp)
                         )
                     }
                 }
@@ -223,7 +252,15 @@ fun JobScreen(navController: NavHostController, viewModel: MainViewModel, jobId:
                     Button(onClick = {
                         coroutineScope.launch {
                             title = job.title
+                            work_experience = job.work_experience
+                            salary = job.salary
+                            city = job.city
+                            company = job.company
                             description = job.description
+                            requirements = job.requirements
+                            conditions = job.conditions
+                            skills = job.skills
+                            contacts = job.contacts
                             bottomSheetState.show()
                         }
                     }) {
@@ -251,7 +288,6 @@ fun JobScreen(navController: NavHostController, viewModel: MainViewModel, jobId:
             }
         }
     }
-
 }
 
 @Preview(showBackground = true)

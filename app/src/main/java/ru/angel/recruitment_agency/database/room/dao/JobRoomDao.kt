@@ -6,7 +6,6 @@ import ru.angel.recruitment_agency.model.Job
 
 @Dao
 interface JobRoomDao {
-
     @Query("SELECT * FROM jobs_table")
     fun getAllJobs(): LiveData<List<Job>>
 

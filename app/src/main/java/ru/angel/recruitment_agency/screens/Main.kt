@@ -39,10 +39,12 @@ fun MainScreen(navController: NavHostController, viewModel: MainViewModel) {
             FloatingActionButton( //Button for adding a new job
                 onClick = {
                     navController.navigate(route = NavRoute.Add.route)
-                }) {
+                }
+            ) {
                 Icon(imageVector = Icons.Filled.Add, contentDescription = Constants.Keys.ADD_ICONS, tint = Color.White)
             }
-        }
+        },
+        modifier = Modifier.padding(bottom = 60.dp)
     ) {
         LazyColumn {
             items(jobs) { job ->
@@ -77,22 +79,16 @@ fun JobItem(job: Job, navController: NavHostController) {
                 fontSize = 24.sp,
                 fontWeight = FontWeight.Bold
             )
-            Text(text = "Salary")
-            Text(text = "City")
-            Text(text = "Company")
+            Text(text = job.salary)
+            Text(text = job.city)
+            Text(text = job.company)
             Text(text = job.description)
-            Row(
+            Box(
                 modifier = Modifier
                     .padding(vertical = 10.dp)
                     .fillMaxWidth(),
-                    horizontalArrangement = Arrangement.SpaceEvenly
+                contentAlignment = Alignment.Center
             ) {
-                Button(
-                    onClick = { 
-                    /*TODO*/ 
-                    }) {
-                    Text(text = "Contacts")
-                }
                 Button(
                     onClick = {
                     /*TODO*/ 
