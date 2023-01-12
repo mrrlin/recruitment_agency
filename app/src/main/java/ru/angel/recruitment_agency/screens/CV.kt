@@ -75,97 +75,97 @@ fun CVScreen(navController: NavHostController, viewModel: MainViewModel, cvId: S
                     OutlinedTextField(
                         value = name,
                         onValueChange = { name = it },
-                        label = { Text(text = Constants.Keys.NAME) },
+                        label = { Text(text = Constants.Keys.PERSON_NAME) },
                         isError = name.isEmpty()
                     )
                     OutlinedTextField(
                         value = surname,
                         onValueChange = { surname = it },
-                        label = { Text(text = Constants.Keys.SURNAME) },
+                        label = { Text(text = Constants.Keys.PERSON_SURNAME) },
                         isError = surname.isEmpty()
                     )
                     OutlinedTextField(
                         value = last_name,
                         onValueChange = { last_name = it },
-                        label = { Text(text = Constants.Keys.LAST_NAME)},
+                        label = { Text(text = Constants.Keys.PERSON_LAST_NAME)},
                         isError = last_name.isEmpty()
                     )
                     OutlinedTextField(
                         value = birth_date,
                         onValueChange = { birth_date = it },
-                        label = { Text(text = Constants.Keys.BIRTH_DATE) },
+                        label = { Text(text = Constants.Keys.PERSON_BIRTH_DATE) },
                         isError = birth_date.isEmpty()
                     )
                     OutlinedTextField(
                         value = male,
                         onValueChange = { male = it },
-                        label = { Text(text = Constants.Keys.MALE)},
+                        label = { Text(text = Constants.Keys.PERSON_MALE)},
                         isError = male.isEmpty()
                     )
                     OutlinedTextField(
                         value = email,
                         onValueChange = { email = it },
-                        label = { Text(text = Constants.Keys.EMAIL)},
+                        label = { Text(text = Constants.Keys.PERSON_EMAIL)},
                         isError = email.isEmpty()
                     )
                     OutlinedTextField(
                         value = phone_number,
                         onValueChange = { phone_number = it },
-                        label = { Text(text = Constants.Keys.PHONE_NUMBER)},
+                        label = { Text(text = Constants.Keys.PERSON_PHONE_NUMBER)},
                         isError = phone_number.isEmpty()
                     )
                     OutlinedTextField(
                         value = city,
                         onValueChange = { city = it },
-                        label = { Text(text = Constants.Keys.CITY)},
+                        label = { Text(text = Constants.Keys.PERSON_CITY)},
                         isError = city.isEmpty()
                     )
                     OutlinedTextField(
                         value = citizenship,
                         onValueChange = { citizenship = it },
-                        label = { Text(text = Constants.Keys.CITIZENSHIP)},
+                        label = { Text(text = Constants.Keys.PERSON_CITIZENSHIP)},
                         isError = citizenship.isEmpty()
                     )
                     OutlinedTextField(
                         value = job_title,
                         onValueChange = { job_title = it },
-                        label = { Text(text = Constants.Keys.JOB_TITLE)},
+                        label = { Text(text = Constants.Keys.PERSON_JOB_TITLE)},
                         isError = job_title.isEmpty()
                     )
                     OutlinedTextField(
                         value = salary,
                         onValueChange = { salary = it },
-                        label = { Text(text = Constants.Keys.SALARY)},
+                        label = { Text(text = Constants.Keys.PERSON_SALARY)},
                         isError = salary.isEmpty()
                     )
                     OutlinedTextField(
                         value = work_experience,
                         onValueChange = { work_experience = it },
-                        label = { Text(text = Constants.Keys.WORK_EXPERIENCE)},
+                        label = { Text(text = Constants.Keys.PERSON_WORK_EXPERIENCE)},
                         isError = work_experience.isEmpty()
                     )
                     OutlinedTextField(
                         value = education,
                         onValueChange = { education = it },
-                        label = { Text(text = Constants.Keys.EDUCATION)},
+                        label = { Text(text = Constants.Keys.PERSON_EDUCATION)},
                         isError = education.isEmpty()
                     )
                     OutlinedTextField(
                         value = skills,
                         onValueChange = { skills = it },
-                        label = { Text(text = Constants.Keys.SKILLS)},
+                        label = { Text(text = Constants.Keys.PERSON_SKILLS)},
                         isError = skills.isEmpty()
                     )
                     OutlinedTextField(
                         value = languages,
                         onValueChange = { languages = it },
-                        label = { Text(text = Constants.Keys.LANGUAGES)},
+                        label = { Text(text = Constants.Keys.PERSON_LANGUAGES)},
                         isError = languages.isEmpty()
                     )
                     OutlinedTextField(
                         value = additional_info,
                         onValueChange = { additional_info = it },
-                        label = { Text(text = Constants.Keys.ADDITIONAL_INFO)},
+                        label = { Text(text = Constants.Keys.PERSON_ADDITIONAL_INFO)},
                         isError = additional_info.isEmpty()
                     )
                     Button(
