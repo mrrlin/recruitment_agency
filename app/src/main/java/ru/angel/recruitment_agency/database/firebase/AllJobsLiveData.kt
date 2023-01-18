@@ -11,7 +11,7 @@ import ru.angel.recruitment_agency.model.Job
 class AllJobsLiveData: LiveData<List<Job>>() {
     private val mAuth = FirebaseAuth.getInstance() //Get the current authorized user
     private val database = FirebaseDatabase.getInstance().reference
-        .child(mAuth.currentUser?.uid.toString())
+        .child(mAuth.currentUser?.uid.toString()).child("jobs")
 
     private val listener = object : ValueEventListener {
         override fun onDataChange(snapshot: DataSnapshot) {

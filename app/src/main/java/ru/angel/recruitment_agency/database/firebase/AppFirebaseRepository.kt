@@ -41,7 +41,7 @@ class AppFirebaseRepository : DatabaseRepository {
         mapJobs[Constants.Keys.SKILLS] = job.skills
         mapJobs[Constants.Keys.CONTACTS] = job.contacts
 
-        database.child(jobId)
+        database.child("jobs").child(jobId)
             .updateChildren(mapJobs)
             .addOnSuccessListener { onSuccess() }
             .addOnFailureListener { Log.d("checkData", "Failed to add new job") }
@@ -70,7 +70,7 @@ class AppFirebaseRepository : DatabaseRepository {
         mapCVs[Constants.Keys.LANGUAGES] = cv.languages
         mapCVs[Constants.Keys.ADDITIONAL_INFO] = cv.additional_info
 
-        database.child(cvId)
+        database.child("cvs").child(cvId)
             .updateChildren(mapCVs)
             .addOnSuccessListener { onSuccess() }
             .addOnFailureListener { Log.d("checkData", "Failed to add new cv") }
@@ -93,7 +93,7 @@ class AppFirebaseRepository : DatabaseRepository {
         mapJobs[Constants.Keys.SKILLS] = job.skills
         mapJobs[Constants.Keys.CONTACTS] = job.contacts
 
-        database.child(jobId)
+        database.child("jobs").child(jobId)
             .updateChildren(mapJobs)
             .addOnSuccessListener { onSuccess() }
             .addOnFailureListener { Log.d("checkData", "Failed to update job") }
@@ -123,7 +123,7 @@ class AppFirebaseRepository : DatabaseRepository {
         mapCVs[Constants.Keys.LANGUAGES] = cv.languages
         mapCVs[Constants.Keys.ADDITIONAL_INFO] = cv.additional_info
 
-        database.child(cvId)
+        database.child("cvs").child(cvId)
             .updateChildren(mapCVs)
             .addOnSuccessListener { onSuccess() }
             .addOnFailureListener { Log.d("checkData", "Failed to update cv") }
@@ -131,14 +131,14 @@ class AppFirebaseRepository : DatabaseRepository {
 
     //JOB delete
     override suspend fun delete(job: Job, onSuccess: () -> Unit) {
-        database.child(job.firebaseId).removeValue()
+        database.child("jobs").child(job.firebaseId).removeValue()
             .addOnSuccessListener { onSuccess() }
             .addOnFailureListener { Log.d("checkData", "Failed to delete job") }
     }
 
     //CV delete
     override suspend fun deleteCV(cv: CV, onSuccess: () -> Unit) {
-        database.child(cv.firebaseId).removeValue()
+        database.child("cvs").child(cv.firebaseId).removeValue()
             .addOnSuccessListener { onSuccess() }
             .addOnFailureListener { Log.d("checkData", "Failed to delete cv") }
     }
