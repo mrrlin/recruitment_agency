@@ -16,6 +16,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
@@ -46,7 +47,7 @@ class MainActivity : ComponentActivity() {
                                          .padding(horizontal = 16.dp),
                                      horizontalArrangement = Arrangement.SpaceBetween
                                  ) {
-                                     Text(text = "Dream Job") //App Title
+                                     Text(text = stringResource(id = R.string.app_title)) //App Title
                                      if (DB_TYPE.value.isNotEmpty()) {
                                          Icon(
                                              imageVector = Icons.Default.ExitToApp,
@@ -70,30 +71,32 @@ class MainActivity : ComponentActivity() {
                          )
                     },
                     bottomBar = {
-                        BottomNavigationBar(
-                            items = listOf(
-                                BottomNavItem(
-                                    name = "Job",
-                                    route = NavRoute.Main.route,
-                                    icon = Icons.Default.Search
+                        if (DB_TYPE.value.isNotEmpty()) {
+                            BottomNavigationBar(
+                                items = listOf(
+                                    BottomNavItem(
+                                        name = "Job",
+                                        route = NavRoute.Main.route,
+                                        icon = Icons.Default.Search
+                                    ),
+                                    BottomNavItem(
+                                        name = "Responses",
+                                        route = NavRoute.Responses.route,
+                                        icon = Icons.Default.Notifications,
+                                        badgeCount = 23
+                                    ),
+                                    BottomNavItem(
+                                        name = "CV",
+                                        route = NavRoute.CVS.route,
+                                        icon = Icons.Default.Settings,
+                                    )
                                 ),
-                                BottomNavItem(
-                                    name = "Responses",
-                                    route = NavRoute.Responses.route,
-                                    icon = Icons.Default.Notifications,
-                                    badgeCount = 23
-                                ),
-                                BottomNavItem(
-                                    name = "CV",
-                                    route = NavRoute.CVS.route,
-                                    icon = Icons.Default.Settings,
-                                )
-                            ),
-                            navController = navController,
-                            onItemClick = {
-                                navController.navigate(it.route)
-                            }
-                        )
+                                navController = navController,
+                                onItemClick = {
+                                    navController.navigate(it.route)
+                                }
+                            )
+                        }
                     },
                     content = {
                         Surface(
