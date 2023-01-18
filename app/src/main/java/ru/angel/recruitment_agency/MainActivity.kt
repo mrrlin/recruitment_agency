@@ -9,14 +9,19 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ExitToApp
+import androidx.compose.material.icons.filled.Notifications
+import androidx.compose.material.icons.filled.Search
+import androidx.compose.material.icons.filled.Settings
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.compose.rememberNavController
+import ru.angel.recruitment_agency.elements.BottomNavigationBar
 import ru.angel.recruitment_agency.navigation.AgencyNavHost
 import ru.angel.recruitment_agency.navigation.NavRoute
 import ru.angel.recruitment_agency.ui.theme.Recruitment_agencyTheme
@@ -42,7 +47,7 @@ class MainActivity : ComponentActivity() {
                                          .padding(horizontal = 16.dp),
                                      horizontalArrangement = Arrangement.SpaceBetween
                                  ) {
-                                     Text(text = "Dream Job")
+                                     Text(text = stringResource(id = R.string.app_title)) //App Title
                                      if (DB_TYPE.value.isNotEmpty()) {
                                          Icon(
                                              imageVector = Icons.Default.ExitToApp,
@@ -64,6 +69,34 @@ class MainActivity : ComponentActivity() {
                              contentColor = Color.White,
                              elevation = 12.dp
                          )
+                    },
+                    bottomBar = {
+                        if (DB_TYPE.value.isNotEmpty()) {
+                            BottomNavigationBar(
+                                items = listOf(
+                                    BottomNavItem(
+                                        name = "Job",
+                                        route = NavRoute.Main.route,
+                                        icon = Icons.Default.Search
+                                    ),
+                                    BottomNavItem(
+                                        name = "Responses",
+                                        route = NavRoute.Responses.route,
+                                        icon = Icons.Default.Notifications,
+                                        badgeCount = 23
+                                    ),
+                                    BottomNavItem(
+                                        name = "CV",
+                                        route = NavRoute.CVS.route,
+                                        icon = Icons.Default.Settings,
+                                    )
+                                ),
+                                navController = navController,
+                                onItemClick = {
+                                    navController.navigate(it.route)
+                                }
+                            )
+                        }
                     },
                     content = {
                         Surface(

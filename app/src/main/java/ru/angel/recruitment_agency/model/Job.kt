@@ -12,6 +12,22 @@ data class Job(
     @ColumnInfo
     val title: String = "",
     @ColumnInfo
+    val work_experience: String = "",
+    @ColumnInfo
+    val salary: String = "",
+    @ColumnInfo
+    val city: String = "",
+    @ColumnInfo
+    val company: String = "",
+    @ColumnInfo
     val description: String = "",
+    @ColumnInfo
+    val requirements: String = "",
+    @ColumnInfo
+    val conditions: String = "",
+    @ColumnInfo
+    val skills: String = "",
+    @ColumnInfo
+    val contacts: String = "",
     val firebaseId: String = ""
 )

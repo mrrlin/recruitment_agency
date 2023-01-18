@@ -90,7 +90,7 @@ fun StartScreen(navController: NavHostController, viewModel: MainViewModel) {
                 horizontalAlignment = Alignment.CenterHorizontally,
                 verticalArrangement = Arrangement.Center
             ) {
-                Text(text = WHAT_WILL_WE_USE)
+                Text(text = WHAT_WILL_WE_USE) //Main text
                 Button(
                     onClick = {
                         viewModel.initDatabase(TYPE_ROOM) {

@@ -9,6 +9,7 @@ import kotlinx.coroutines.launch
 import ru.angel.recruitment_agency.database.firebase.AppFirebaseRepository
 import ru.angel.recruitment_agency.database.room.AppRoomDatabase
 import ru.angel.recruitment_agency.database.room.repository.RoomRepository
+import ru.angel.recruitment_agency.model.CV
 import ru.angel.recruitment_agency.model.Job
 import ru.angel.recruitment_agency.utils.*
 
@@ -21,7 +22,8 @@ class MainViewModel (application: Application) : AndroidViewModel(application) {
         when(type) {
             TYPE_ROOM -> {
                 val dao = AppRoomDatabase.getInstance(context = context).getRoomDao()
-                REPOSITORY = RoomRepository(dao)
+                val dao1 = AppRoomDatabase.getInstance(context = context).getRoomCVDao()
+                REPOSITORY = RoomRepository(dao, dao1)
                 onSuccess()
             }
             TYPE_FIREBASE -> {
@@ -44,9 +46,29 @@ class MainViewModel (application: Application) : AndroidViewModel(application) {
         }
     }
 
+    fun addCV(cv: CV, onSuccess: () -> Unit) {
+        viewModelScope.launch(Dispatchers.IO) {
+            REPOSITORY.createCV(cv = cv) {
+                viewModelScope.launch(Dispatchers.Main) {
+                    onSuccess()
+                }
+            }
+        }
+    }
+
     fun updateJob(job: Job, onSuccess: () -> Unit) {
         viewModelScope.launch(Dispatchers.IO) {
             REPOSITORY.update(job = job) {
+                viewModelScope.launch(Dispatchers.Main) {
+                    onSuccess()
+                }
+            }
+        }
+    }
+
+    fun updateCV(cv: CV, onSuccess: () -> Unit) {
+        viewModelScope.launch(Dispatchers.IO) {
+            REPOSITORY.updateCV(cv = cv) {
                 viewModelScope.launch(Dispatchers.Main) {
                     onSuccess()
                 }
@@ -64,7 +86,19 @@ class MainViewModel (application: Application) : AndroidViewModel(application) {
         }
     }
 
+    fun deleteCV(cv: CV, onSuccess: () -> Unit) {
+        viewModelScope.launch(Dispatchers.IO) {
+            REPOSITORY.deleteCV(cv = cv) {
+                viewModelScope.launch(Dispatchers.Main) {
+                    onSuccess()
+                }
+            }
+        }
+    }
+
     fun readAllJobs() = REPOSITORY.readAll
+
+    fun readAllCVs() = REPOSITORY.readAllCV
 
     fun singOut(onSuccess: () -> Unit) {
         when(DB_TYPE.value) {
