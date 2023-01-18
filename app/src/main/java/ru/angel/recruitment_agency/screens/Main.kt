@@ -8,7 +8,7 @@ import androidx.compose.foundation.lazy.items
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
-import androidx.compose.runtime.Composable
+import androidx.compose.runtime.*
 import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -63,6 +63,9 @@ fun JobItem(job: Job, navController: NavHostController) {
         TYPE_ROOM -> job.id
         else -> Constants.Keys.EMPTY
     }
+
+    var isExpanded by remember { mutableStateOf(false) }
+
     Card(
         modifier = Modifier
             .fillMaxWidth()
@@ -84,7 +87,12 @@ fun JobItem(job: Job, navController: NavHostController) {
             Text(text = job.salary)
             Text(text = job.city)
             Text(text = job.company)
-            Text(text = job.description)
+            Text(
+                modifier = Modifier
+                    .clickable { isExpanded = !isExpanded },
+                maxLines = if (isExpanded) Int.MAX_VALUE else 1,
+                text = job.description
+            )
             Box(
                 modifier = Modifier
                     .padding(vertical = 10.dp)

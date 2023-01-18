@@ -23,7 +23,7 @@ object Constants {
         const val ADD_NEW_JOB = "Add new job" //Label
         const val ADD_NEW_CV = "Add new CV" //Label
 
-        const val JOB_TITLE = "Job title"
+        const val JOB_TITLE = "job_title"
         const val JOB_DESCRIPTION = "Job description"
         const val ADD_JOB = "Add Job" //Button's text
         const val ADD_CV = "Add CV" //Button's text

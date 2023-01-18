@@ -44,6 +44,8 @@ fun JobScreen(navController: NavHostController, viewModel: MainViewModel, jobId:
     }
     val bottomSheetState = rememberModalBottomSheetState(initialValue = ModalBottomSheetValue.Hidden)
     val coroutineScope = rememberCoroutineScope()
+
+
     var title by remember { mutableStateOf(Constants.Keys.EMPTY)}
     var work_experience by remember { mutableStateOf(Constants.Keys.EMPTY)}
     var salary by remember { mutableStateOf(Constants.Keys.EMPTY) }
@@ -164,10 +166,14 @@ fun JobScreen(navController: NavHostController, viewModel: MainViewModel, jobId:
         }
     ) {
         Scaffold(
-            modifier = Modifier.padding(bottom = 60.dp).fillMaxSize()
+            modifier = Modifier
+                .padding(bottom = 60.dp)
+                .fillMaxSize()
         ) {
             Column(
-                modifier = Modifier.fillMaxSize(),
+                modifier = Modifier
+                    .fillMaxSize()
+                    .verticalScroll(rememberScrollState()),
                 horizontalAlignment = Alignment.CenterHorizontally,
                 verticalArrangement = Arrangement.Center
             ) {
@@ -177,7 +183,9 @@ fun JobScreen(navController: NavHostController, viewModel: MainViewModel, jobId:
                         .padding(32.dp)
                 ) {
                     Column(
-                        modifier = Modifier.padding(vertical = 8.dp, horizontal = 10.dp),
+                        modifier = Modifier
+                            .padding(vertical = 8.dp, horizontal = 10.dp)
+                        ,
                         horizontalAlignment = Alignment.Start
                     ) {
                         Text(

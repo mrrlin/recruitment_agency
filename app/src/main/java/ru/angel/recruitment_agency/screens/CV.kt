@@ -1,5 +1,6 @@
 package ru.angel.recruitment_agency.screens
 
+import android.media.Image
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -21,6 +22,12 @@ import ru.angel.recruitment_agency.utils.Constants
 import ru.angel.recruitment_agency.utils.DB_TYPE
 import ru.angel.recruitment_agency.utils.TYPE_FIREBASE
 import ru.angel.recruitment_agency.utils.TYPE_ROOM
+import androidx.compose.foundation.Image
+import androidx.compose.foundation.horizontalScroll
+import androidx.compose.foundation.shape.CircleShape
+import androidx.compose.ui.draw.clip
+import androidx.compose.ui.res.painterResource
+import ru.angel.recruitment_agency.R
 
 @OptIn(ExperimentalMaterialApi::class)
 @Composable
@@ -225,6 +232,17 @@ fun CVScreen(navController: NavHostController, viewModel: MainViewModel, cvId: S
                         modifier = Modifier.padding(vertical = 8.dp, horizontal = 10.dp),
                         horizontalAlignment = Alignment.Start
                     ) {
+                        Box(
+                            contentAlignment = Alignment.Center
+                        ) {
+                            Image(
+                                painter = painterResource(R.drawable.top),
+                                contentDescription = "Contact profile picture",
+                                modifier = Modifier
+                                    .size(100.dp)
+                                    .clip(CircleShape)
+                            )
+                        }
                         Text(
                             text = cv.name,
                             fontSize = 18.sp,

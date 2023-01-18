@@ -1,4 +1,4 @@
 <resources>
     <string name="app_name">Recruitment Agency</string>
-    <string name="app_title">Dream Job</string>
+    <string name="app_title" translatable="false">Dream Job</string>
 </resources>
